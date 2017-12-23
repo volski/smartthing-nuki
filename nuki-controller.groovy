@@ -1,9 +1,9 @@
 metadata {
 	definition (name: "NukiLock Controller", namespace: "Volski", author: "Volski") {
-    	command "lock"
-        command "unlock"
-        command "refresh"
-        capability "Lock"
+    command "lock"
+    command "unlock"
+    command "refresh"
+    capability "Lock"
 	}
 	// simulator metadata
 	simulator {
@@ -17,13 +17,13 @@ metadata {
 	}
 	tiles {
 		standardTile("door", "_Nuki", width: 3, height: 2, canChangeIcon: true) {
-			state "locked", label: "Locked", action:"unlock", icon:"st.locks.lock.locked", backgroundColor:"#FF0000"
-            state "waiting", label: "Waiting", action: "waitdevice", icon:"st.locks.lock.locked", backgroundColor:"#c0c0c0"
-            state "unlocked", label: "Unlocked", action:"lock", icon:"st.locks.lock.unlocked", backgroundColor:"#79b821"
+		state "locked", label: "Locked", action:"unlock", icon:"st.locks.lock.locked", backgroundColor:"#FF0000"
+        state "waiting", label: "Waiting", action: "waitdevice", icon:"st.locks.lock.locked", backgroundColor:"#c0c0c0"
+        state "unlocked", label: "Unlocked", action:"lock", icon:"st.locks.lock.unlocked", backgroundColor:"#79b821"
 		}
         
-         standardTile("refresh", "device.refresh", inactiveLabel: false, decoration: "flat", width: 1, height: 1) {
-        	state "default", action:"refresh", icon:"st.secondary.refresh"
+        standardTile("refresh", "device.refresh", inactiveLabel: false, decoration: "flat", width: 1, height: 1) {
+        state "default", action:"refresh", icon:"st.secondary.refresh"
     	}
 
 		main "door"
@@ -135,8 +135,9 @@ def initialize() {
 	// Schedule it to run every 1 minutes
 	runEvery1Minute("refresh")
 }
-def poll(){
-}
+
+def poll(){}
+
 def waitdevice(){}
 
 def lock() {
