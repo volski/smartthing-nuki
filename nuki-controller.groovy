@@ -137,39 +137,6 @@ def initialize() {
 }
 def poll(){
 }
-metadata {
-	definition (name: "NukiLock Controller", namespace: "Volski", author: "Volski") {
-    	command "lock"
-        command "unlock"
-        command "refresh"
-        capability "Lock"
-	}
-	// simulator metadata
-	simulator {
-	}   
-     preferences {
-	    input("ServerIp", "string", title:"Server IP Address", description: "Please enter server ip address", required: true, displayDuringSetup: true)
-    	input("ServerPort", "number", title:"Server Port", description: "Please enter your server Port", defaultValue: 8080 , required: false, displayDuringSetup: true)
-        input("DevicePathOff", "string", title:"URL Path for Lock", description: "Rest of the URL, include forward slash.", displayDuringSetup: true)
-		input("DevicePathOn", "string", title:"URL Path for UnLock", description: "Rest of the URL, include forward slash.", displayDuringSetup: true)
-        input("DeviceStatus", "string", title:"URL Status", description: "Rest of the URL, include forward slash.", displayDuringSetup: true)		
-	}
-	tiles {
-		standardTile("door", "_Nuki", width: 3, height: 2, canChangeIcon: true) {
-			state "locked", label: "Locked", action:"unlock", icon:"st.locks.lock.locked", backgroundColor:"#FF0000"
-            state "waiting", label: "Waiting", action: "waitdevice", icon:"st.locks.lock.locked", backgroundColor:"#c0c0c0"
-            state "unlocked", label: "Unlocked", action:"lock", icon:"st.locks.lock.unlocked", backgroundColor:"#79b821"
-		}
-        
-         standardTile("refresh", "device.refresh", inactiveLabel: false, decoration: "flat", width: 1, height: 1) {
-        	state "default", action:"refresh", icon:"st.secondary.refresh"
-    	}
-
-		main "door"
-        details "door", "refresh"
-	}
-    
-}
 def waitdevice(){}
 
 def lock() {
