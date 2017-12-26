@@ -1,25 +1,18 @@
 metadata {
 	definition (name: "NukiLock Controller", namespace: "Volski", author: "Volski") {
     	command "lock"
-<<<<<<< HEAD
         command "unlock"
         command "refresh"
         command "lockNgo"
         capability "Lock"
-=======
-    	command "unlock"
-    	command "refresh"
-    	capability "Lock"
->>>>>>> 6d24b0d335b897e9d10141f99e131ee674f32677
 	}
 	// simulator metadata
 	simulator {
 	}   
      preferences {
-	input("ServerIp", "string", title:"Server IP Address", description: "Please enter server ip address", required: true, displayDuringSetup: true)
+	    input("ServerIp", "string", title:"Server IP Address", description: "Please enter server ip address", required: true, displayDuringSetup: true)
     	input("ServerPort", "number", title:"Server Port", description: "Please enter your server Port", defaultValue: 8080 , required: false, displayDuringSetup: true)
         input("DevicePathOff", "string", title:"URL Path for Lock", description: "Rest of the URL, include forward slash.", displayDuringSetup: true)
-<<<<<<< HEAD
 		input("DevicePathOn", "string", title:"URL Path for UnLock", description: "Rest of the URL, include forward slash.", displayDuringSetup: true)
         input("DeviceLockNgo", "string", title:"URL Path for LockNgo", description: "Rest of the URL, include forward slash.", displayDuringSetup: true)
         input("DeviceStatus", "string", title:"URL Status", description: "Rest of the URL, include forward slash.", displayDuringSetup: true)		
@@ -30,22 +23,10 @@ metadata {
             state "waiting", label: "Waiting", action: "waitdevice", icon:"st.locks.lock.locked", backgroundColor:"#c0c0c0"
             state "unlocked", label: "Unlocked", action:"lock", icon:"st.locks.lock.unlocked", backgroundColor:"#79b821"
 		}
-=======
-	input("DevicePathOn", "string", title:"URL Path for UnLock", description: "Rest of the URL, include forward slash.", displayDuringSetup: true)
-        input("DeviceStatus", "string", title:"URL Status", description: "Rest of the URL, include forward slash.", displayDuringSetup: true)		
-	}
-	tiles {
-	standardTile("door", "_Nuki", width: 3, height: 2, canChangeIcon: true) {
-	state "locked", label: "Locked", action:"unlock", icon:"st.locks.lock.locked", backgroundColor:"#FF0000"
-        state "waiting", label: "Waiting", action: "waitdevice", icon:"st.locks.lock.locked", backgroundColor:"#c0c0c0"
-        state "unlocked", label: "Unlocked", action:"lock", icon:"st.locks.lock.unlocked", backgroundColor:"#79b821"
-	}
->>>>>>> 6d24b0d335b897e9d10141f99e131ee674f32677
         
          standardTile("refresh", "device.refresh", inactiveLabel: false, decoration: "flat", width: 1, height: 1) {
         	state "default", action:"refresh", icon:"st.secondary.refresh"
     	}
-<<<<<<< HEAD
         
         standardTile("lockNgo", "_lockgo", inactiveLabel: false,  width: 2, height: 2) {
         	state "locked",label:"Lock'N'Go", action:"lockNgo", icon:"st.locks.lock.locked", backgroundColor:"#FF0000"
@@ -56,32 +37,27 @@ metadata {
  
 		main "door"
         details "door", "refresh","lockNgo"
-=======
-
-	main "door"
-        details "door", "refresh"
->>>>>>> 6d24b0d335b897e9d10141f99e131ee674f32677
 	}
     
 }
 def waitdevice(){}
 
 def lock() {
-log.debug "---LOCK COMMAND--- ${DevicePathOff}"
+    log.debug "---LOCK COMMAND--- ${DevicePathOff}"
 	runCmd(DevicePathOff)
-    	refresh()
+    refresh()
 }
 
 def unlock() {
-log.debug "---UNLOCK COMMAND--- ${DevicePathOn}"
-    	runCmd(DevicePathOn)
-    	refresh()
+    log.debug "---UNLOCK COMMAND--- ${DevicePathOn}"
+    runCmd(DevicePathOn)
+    refresh()
 }
 
 def refresh() {
-log.debug "Refreshing"
-    	sendEvent(name: "_Nuki", value: "waiting")
-    	runCmd(DeviceStatus)
+	log.debug "Refreshing"
+    sendEvent(name: "_Nuki", value: "waiting")
+    runCmd(DeviceStatus)
 }
 def lockNgo(){
 	log.debug "lockNgo"
@@ -91,8 +67,6 @@ def lockNgo(){
     }
 
    
-=======
->>>>>>> 6d24b0d335b897e9d10141f99e131ee674f32677
 
 def runCmd(String varCommand) {
 	def host = ServerIp
