@@ -91,6 +91,8 @@ def lockNgo(){
     }
 
    
+=======
+>>>>>>> 6d24b0d335b897e9d10141f99e131ee674f32677
 
 def runCmd(String varCommand) {
 	def host = ServerIp
