@@ -5,6 +5,7 @@ metadata {
         command "refresh"
         command "lockNgo"
         capability "Lock"
+        capability "Switch"
 	}
 	// simulator metadata
 	simulator {
@@ -34,13 +35,32 @@ metadata {
             
     	}
         
- 
+        standardTile("switch", "switch", inactiveLabel: false,  width: 1, height: 1) {
+        	state "locked", action:"on",label: "", icon:"device.switch", backgroundColor:"#FF0000"
+            state "unlocked", action:"off",label: "" , icon:"device.switch", backgroundColor:"#79b821"
+            
+    	}
+      
 		main "door"
-        details "door", "refresh","lockNgo"
+        details "door", "refresh","lockNgo","switch"
 	}
     
 }
 def waitdevice(){}
+
+def on()
+{
+	log.debug "pushed"
+    log.debug "lockNgo"
+    sendEvent(name: "_lockgo", value: "unlocked")
+    sendEvent(name: "switch", value: "unlocked")
+    runCmd(DeviceLockNgo)
+    refresh()
+}
+def off()
+{
+	log.debug "Off"
+}
 
 def lock() {
     log.debug "---LOCK COMMAND--- ${DevicePathOff}"
@@ -118,6 +138,10 @@ def parse(String description) {
         	{
         	sendEvent(name: "_Nuki", value: json.stateName)
             sendEvent(name: "_lockgo", value: json.stateName)
+            	if("locked"==json.stateName)
+                {
+                 sendEvent(name: "switch", value: "locked")
+                }
             }
         else
         	{
