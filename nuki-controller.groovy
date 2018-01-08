@@ -10,11 +10,7 @@ metadata {
         capability "Lock"
         
         capability "Refresh"
-        
-        capability "Actuator"
-        //capability "Sensor"
-        capability "Health Check"
-        
+                
     	
         command "refresh"
         command "lock"
