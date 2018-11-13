@@ -2,7 +2,7 @@ import groovy.json.JsonSlurper
 
 metadata {
     // Automatically generated. Make future change here.
-    definition (name: "Simulated Lock", namespace: "smartthings", author: "Volski") {
+    definition (name: "Simulated Lock", namespace: "volski", author: "Volski") {
         capability "Actuator"
         capability "Sensor"
         capability "Health Check"
