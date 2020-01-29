@@ -11,7 +11,7 @@ steps to install the device handler:
 8. Click on "New Device"
 9. In the "Name" fill -> Nuki (or anything else this will be the name of the Device)
 10. In the "Device Network Id" fill -> Nuki (or anything else - must be unique).
-11. In the "Type" select "Simulated Lock" (this is the device we have created in the steps before)
+11. In the "Type" select "nuki-web-api-handler" (this is the device we have created in the steps before)
 12. In the "Version" select "Self-Published"
 13. In "Location" select your location
 14. In "Hub" select the hub you want to control the nuki
