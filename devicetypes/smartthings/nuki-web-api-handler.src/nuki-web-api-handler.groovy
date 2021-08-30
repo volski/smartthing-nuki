@@ -74,7 +74,7 @@ def refresh() {
             log.debug "Battery is Critical: ${resp.data.state.batteryCritical}"
             	if(resp.data.state.batteryCritical==false)
            		{
-            	sendEvent(name:"battery", value:100)
+            	sendEvent(name:"battery", value:resp.data.state.batteryCharge)
                	}
                 else
                 {
